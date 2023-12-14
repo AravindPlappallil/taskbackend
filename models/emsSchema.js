@@ -8,7 +8,7 @@ const employees=mongoose.model('employees',{
         required:true,
         unique:true,
         },
-    employename:{
+    employeename:{
         type:String,
         required:true,
     },
@@ -18,7 +18,7 @@ const employees=mongoose.model('employees',{
     },
     jobdescription:{ 
         type:String, 
-        required:true,
+        required:true, 
     }
 })
 

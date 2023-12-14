@@ -2,7 +2,7 @@ const { json } = require("express");
 const employees = require("../models/emsSchema");
 
 exports.employeeRegister = async (req, res) => {
-    console.log("hi");
+
   const { employeeid, employeename, employeeplace, jobdescription } = req.body;
   if (!employeeid || !employeename || !employeeplace || !jobdescription) {
     res.status(403).json("all the inputs are required");
@@ -13,7 +13,7 @@ exports.employeeRegister = async (req, res) => {
     if (preEmployee) {
       res.status(401).json("employee already exist");
     } else {
-      const newEmployee = new employees({
+      const newEmployee = new employees({ 
         employeeid,
         employeename,
         employeeplace,
@@ -23,6 +23,8 @@ exports.employeeRegister = async (req, res) => {
       res.status(200).json(newEmployee);
     }
   } catch (error) {
-    res.status(401).json(error);
+    // Improved error handling
+    console.error("Error in employee registration:", error);
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
